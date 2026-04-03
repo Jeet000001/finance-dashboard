@@ -1,14 +1,14 @@
 export const CATEGORIES = {
-  Food: { color: "#f59e0b", icon: "🍔" },
-  Rent: { color: "#8b5cf6", icon: "🏠" },
-  Travel: { color: "#06b6d4", icon: "✈️" },
-  Shopping: { color: "#ec4899", icon: "🛍️" },
-  Health: { color: "#22c55e", icon: "💊" },
-  Entertainment: { color: "#f97316", icon: "🎮" },
-  Salary: { color: "#22c55e", icon: "💼" },
-  Freelance: { color: "#06b6d4", icon: "💻" },
-  Investment: { color: "#8b5cf6", icon: "📈" },
-  Utilities: { color: "#94a3b8", icon: "⚡" },
+  Food: { color: "#f59e0b" },
+  Rent: { color: "#8b5cf6" },
+  Travel: { color: "#06b6d4" },
+  Shopping: { color: "#ec4899" },
+  Health: { color: "#22c55e" },
+  Entertainment: { color: "#f97316" },
+  Salary: { color: "#22c55e" },
+  Freelance: { color: "#06b6d4" },
+  Investment: { color: "#8b5cf6" },
+  Utilities: { color: "#94a3b8" },
 };
 
 export const initialTransactions = [
