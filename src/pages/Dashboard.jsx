@@ -11,26 +11,20 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
       <div className="anim-fade-up">
         <h1 className="font-display font-bold text-white text-2xl">{greeting} 👋</h1>
         <p className="text-sm mt-1" style={{ color: "#4a4760" }}>
           Here's your financial overview · {state.role === "admin" ? "Admin Access" : "Viewer Mode"}
         </p>
       </div>
-
-      {/* Summary Cards */}
       <SummaryCards />
 
-      {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="lg:col-span-2">
           <BalanceChart />
         </div>
         <SpendingChart />
       </div>
-
-      {/* Recent Transactions */}
       <RecentTransactions />
     </div>
   );
