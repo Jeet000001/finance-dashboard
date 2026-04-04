@@ -60,7 +60,6 @@ export default function SpendingChart() {
 
   return (
     <div className="rounded-2xl p-5 bg-[#1a1828] border border-[#2d2a45] anim-fade-up delay-5">
-      
       <div className="mb-4">
         <h3 className="font-display font-semibold text-white">
           Spending Breakdown
@@ -70,7 +69,6 @@ export default function SpendingChart() {
           By category
         </p>
       </div>
-
       <ResponsiveContainer width="100%" height={220}>
         <PieChart>
 
@@ -98,16 +96,13 @@ export default function SpendingChart() {
       <div className="grid grid-cols-2 gap-1.5 mt-2">
         {data.map(d => (
           <div key={d.name} className="flex items-center gap-2 text-xs">
-
             <span
               className="w-2 h-2 rounded-full flex-shrink-0"
               style={{ background: d.color }}
             />
-
             <span className="text-[#7a7890]">
               {CATEGORIES[d.name]?.icon} {d.name}
             </span>
-
           </div>
         ))}
       </div>
