@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
-import { X, IndianRupee, AlignLeft, Tag, Calendar,
-         ArrowUpCircle, ArrowDownCircle } from "lucide-react";
+import {
+  X,
+  IndianRupee,
+  AlignLeft,
+  Tag,
+  Calendar,
+  ArrowUpCircle,
+  ArrowDownCircle,
+} from "lucide-react";
 import { useApp } from "../context/AppContext";
 import { CATEGORIES } from "../data/mockData";
 
@@ -33,7 +40,10 @@ export default function TransactionModal({ open, onClose, editData }) {
 
   const handleSubmit = () => {
     const e = validate();
-    if (Object.keys(e).length) { setErrors(e); return; }
+    if (Object.keys(e).length) {
+      setErrors(e);
+      return;
+    }
     const payload = { ...form, amount: Number(form.amount) };
     if (editData) dispatch({ type: "EDIT_TRANSACTION", payload });
     else dispatch({ type: "ADD_TRANSACTION", payload });
@@ -43,7 +53,6 @@ export default function TransactionModal({ open, onClose, editData }) {
   if (!open) return null;
 
   return (
-    /* ── Backdrop ── */
     <div
       onClick={(e) => e.target === e.currentTarget && onClose()}
       className="
@@ -52,11 +61,6 @@ export default function TransactionModal({ open, onClose, editData }) {
         bg-black/70 backdrop-blur-sm
       "
     >
-      {/*
-        ── Modal shell ──
-        Mobile  : full-width bottom sheet, rounded top corners, drag handle
-        Tablet+ : centered card, fully rounded, max-width capped
-      */}
       <div
         className="
           w-full
@@ -70,23 +74,21 @@ export default function TransactionModal({ open, onClose, editData }) {
         "
         style={{ animation: "fadeUp 0.22s ease" }}
       >
-        {/* Drag handle — mobile only */}
         <div className="flex justify-center pt-3 pb-1 sm:hidden flex-shrink-0">
           <div className="w-9 h-1 rounded-full bg-[#2d2a45]" />
         </div>
 
-        {/* Scrollable body */}
         <div className="overflow-y-auto flex-1">
           <div className="px-4 sm:px-6 pt-3 sm:pt-6 pb-5 sm:pb-6 space-y-4 sm:space-y-5">
-
-            {/* ── Header ── */}
             <div className="flex items-start justify-between gap-3">
               <div>
                 <h2 className="text-[15px] sm:text-base font-bold text-white leading-snug">
                   {editData ? "Edit Transaction" : "Add Transaction"}
                 </h2>
                 <p className="text-[11px] sm:text-xs mt-0.5 text-[#4a4760]">
-                  {editData ? "Update the details below" : "Fill in the details below"}
+                  {editData
+                    ? "Update the details below"
+                    : "Fill in the details below"}
                 </p>
               </div>
               <button
@@ -104,7 +106,6 @@ export default function TransactionModal({ open, onClose, editData }) {
               </button>
             </div>
 
-            {/* ── Type Toggle ── */}
             <div>
               <p className="text-[10px] sm:text-[11px] font-medium text-[#7a7890] uppercase tracking-widest mb-2">
                 Transaction Type
@@ -115,7 +116,8 @@ export default function TransactionModal({ open, onClose, editData }) {
                     value: "income",
                     label: "Income",
                     Icon: ArrowUpCircle,
-                    activeClass: "border-emerald-500/40 bg-emerald-500/10 text-emerald-400",
+                    activeClass:
+                      "border-emerald-500/40 bg-emerald-500/10 text-emerald-400",
                   },
                   {
                     value: "expense",
@@ -132,9 +134,10 @@ export default function TransactionModal({ open, onClose, editData }) {
                       py-2.5 sm:py-3 rounded-xl border
                       text-xs sm:text-sm font-semibold
                       transition-all duration-150
-                      ${form.type === value
-                        ? activeClass
-                        : "border-[#2d2a45] text-[#4a4760] hover:border-[#3d3a55] hover:text-[#7a7890]"
+                      ${
+                        form.type === value
+                          ? activeClass
+                          : "border-[#2d2a45] text-[#4a4760] hover:border-[#3d3a55] hover:text-[#7a7890]"
                       }
                     `}
                   >
@@ -145,7 +148,6 @@ export default function TransactionModal({ open, onClose, editData }) {
               </div>
             </div>
 
-            {/* ── Description ── */}
             <div>
               <label className="block text-[10px] sm:text-[11px] font-medium text-[#7a7890] uppercase tracking-widest mb-1.5">
                 Description
@@ -158,7 +160,9 @@ export default function TransactionModal({ open, onClose, editData }) {
                 <input
                   type="text"
                   value={form.description}
-                  onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, description: e.target.value }))
+                  }
                   placeholder="e.g. Monthly Salary, House Rent..."
                   className={`
                     w-full pl-9 pr-3
@@ -173,11 +177,12 @@ export default function TransactionModal({ open, onClose, editData }) {
                 />
               </div>
               {errors.description && (
-                <p className="text-[11px] mt-1 text-red-400">⚠ {errors.description}</p>
+                <p className="text-[11px] mt-1 text-red-400">
+                  ⚠ {errors.description}
+                </p>
               )}
             </div>
 
-            {/* ── Amount ── */}
             <div>
               <label className="block text-[10px] sm:text-[11px] font-medium text-[#7a7890] uppercase tracking-widest mb-1.5">
                 Amount
@@ -190,7 +195,9 @@ export default function TransactionModal({ open, onClose, editData }) {
                 <input
                   type="number"
                   value={form.amount}
-                  onChange={(e) => setForm((f) => ({ ...f, amount: e.target.value }))}
+                  onChange={(e) =>
+                    setForm((f) => ({ ...f, amount: e.target.value }))
+                  }
                   placeholder="0"
                   min="0"
                   className={`
@@ -206,18 +213,13 @@ export default function TransactionModal({ open, onClose, editData }) {
                 />
               </div>
               {errors.amount && (
-                <p className="text-[11px] mt-1 text-red-400">⚠ {errors.amount}</p>
+                <p className="text-[11px] mt-1 text-red-400">
+                  ⚠ {errors.amount}
+                </p>
               )}
             </div>
 
-            {/*
-              ── Category + Date ──
-              Mobile  : stacked (1 col)
-              Tablet+ : side by side (2 col)
-            */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-
-              {/* Category */}
               <div>
                 <label className="block text-[10px] sm:text-[11px] font-medium text-[#7a7890] uppercase tracking-widest mb-1.5">
                   Category
@@ -229,7 +231,9 @@ export default function TransactionModal({ open, onClose, editData }) {
                   />
                   <select
                     value={form.category}
-                    onChange={(e) => setForm((f) => ({ ...f, category: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, category: e.target.value }))
+                    }
                     className="
                       w-full pl-9 pr-8
                       py-2.5 sm:py-3
@@ -242,7 +246,11 @@ export default function TransactionModal({ open, onClose, editData }) {
                     "
                   >
                     {Object.keys(CATEGORIES).map((c) => (
-                      <option key={c} value={c} style={{ background: "#1a1828" }}>
+                      <option
+                        key={c}
+                        value={c}
+                        style={{ background: "#1a1828" }}
+                      >
                         {CATEGORIES[c].icon} {c}
                       </option>
                     ))}
@@ -253,7 +261,6 @@ export default function TransactionModal({ open, onClose, editData }) {
                 </div>
               </div>
 
-              {/* Date */}
               <div>
                 <label className="block text-[10px] sm:text-[11px] font-medium text-[#7a7890] uppercase tracking-widest mb-1.5">
                   Date
@@ -266,7 +273,9 @@ export default function TransactionModal({ open, onClose, editData }) {
                   <input
                     type="date"
                     value={form.date}
-                    onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
+                    onChange={(e) =>
+                      setForm((f) => ({ ...f, date: e.target.value }))
+                    }
                     className="
                       w-full pl-9 pr-3
                       py-2.5 sm:py-3
@@ -282,11 +291,6 @@ export default function TransactionModal({ open, onClose, editData }) {
               </div>
             </div>
 
-            {/*
-              ── Buttons ──
-              Mobile  : stacked vertically (Cancel below)
-              Tablet+ : side by side
-            */}
             <div className="flex flex-col-reverse sm:flex-row gap-2.5 sm:gap-3 pt-1">
               <button
                 onClick={onClose}
@@ -314,7 +318,6 @@ export default function TransactionModal({ open, onClose, editData }) {
                 {editData ? "Save Changes" : "Add Transaction"}
               </button>
             </div>
-
           </div>
         </div>
       </div>
