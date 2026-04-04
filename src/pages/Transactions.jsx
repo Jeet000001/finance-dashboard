@@ -375,7 +375,6 @@ export default function Transactions() {
                 className="bg-[#1a1828] border border-[#2d2a45] rounded-2xl px-4 py-3.5
                            hover:border-[#3d3a55] transition-all"
               >
-                {/* Card top row */}
                 <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-3 min-w-0">
                     <div className="min-w-0">
