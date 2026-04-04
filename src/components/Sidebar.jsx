@@ -26,7 +26,6 @@ export default function Sidebar() {
           </p>
         </div>
       </div>
-      {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-1">
         {navItems.map(({ id, label, icon: Icon }) => {
           const active = activeTab === id;
@@ -49,7 +48,6 @@ export default function Sidebar() {
           );
         })}
       </nav>
-      {/* Role Switcher */}
       <div className="px-4 py-4 border-t border-[#2d2a45]">
         <p className="text-xs mb-2 px-1 text-[#4a4760]">ROLE</p>
         <div className="flex rounded-xl overflow-hidden border border-[#2d2a45]">
