@@ -12,7 +12,6 @@ export default function RecentTransactions() {
   return (
     <div className="rounded-2xl p-5 bg-[#1a1828] border border-[#2d2a45] anim-fade-up delay-5">
       
-      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
           <h3 className="font-display font-semibold text-white">
@@ -32,7 +31,6 @@ export default function RecentTransactions() {
         </button>
       </div>
 
-      {/* Transactions */}
       <div className="space-y-2">
         {recent.map(t => {
           const cat = CATEGORIES[t.category];
@@ -43,7 +41,6 @@ export default function RecentTransactions() {
               key={t.id}
               className="flex items-center gap-3 px-5 py-2.5 rounded-xl bg-[#12111e] hover:bg-[#2f2d54] transition-all"
             >
-              {/* Description */}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium text-[#e8e6f0] truncate">
                   {t.description}
@@ -58,7 +55,6 @@ export default function RecentTransactions() {
                 </p>
               </div>
 
-              {/* Amount */}
               <div className="flex items-center gap-1">
                 {isIncome ? (
                   <ArrowUpRight size={12} className="text-green-500" />
