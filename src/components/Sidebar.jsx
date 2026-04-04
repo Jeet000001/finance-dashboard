@@ -9,7 +9,7 @@ const navItems = [
 
 export default function Sidebar() {
   const { state, dispatch } = useApp();
-  const { activeTab, role, darkMode } = state;
+  const { activeTab, role } = state;
 
   return (
     <aside className="fixed left-0 top-0 h-full w-64 flex flex-col z-40 bg-[#0d0c15] border-r border-[#2d2a45]">
@@ -78,16 +78,6 @@ export default function Sidebar() {
         <p className="text-xs mt-2 px-1 text-[#4a4760]">
           {role === "admin" ? "Can add & edit" : "View only mode"}
         </p>
-      </div>
-      {/* Dark Mode Toggle */}
-      <div className="px-4 pb-5">
-        <button
-          onClick={() => dispatch({ type: "TOGGLE_DARK" })}
-          className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs transition-all bg-[#1a1828] text-[#7a7890] border border-[#2d2a45]"
-        >
-          {darkMode ? <Sun size={13} /> : <Moon size={13} />}
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </button>
       </div>
     </aside>
   );
