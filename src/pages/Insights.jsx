@@ -1,7 +1,22 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  CartesianGrid,
+} from "recharts";
 import { useApp } from "../context/AppContext";
 import { CATEGORIES, monthlyData } from "../data/mockData";
-import { TrendingUp, TrendingDown, Award, AlertCircle, Zap, Target } from "lucide-react";
+import {
+  TrendingUp,
+  TrendingDown,
+  Award,
+  AlertCircle,
+  Zap,
+  Target,
+} from "lucide-react";
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
@@ -32,9 +47,11 @@ export default function Insights() {
   const txns = state.transactions;
 
   const catTotals = {};
-  txns.filter((t) => t.type === "expense").forEach((t) => {
-    catTotals[t.category] = (catTotals[t.category] || 0) + t.amount;
-  });
+  txns
+    .filter((t) => t.type === "expense")
+    .forEach((t) => {
+      catTotals[t.category] = (catTotals[t.category] || 0) + t.amount;
+    });
 
   const sortedCats = Object.entries(catTotals).sort((a, b) => b[1] - a[1]);
   const topCategory = sortedCats[0];
@@ -70,16 +87,14 @@ export default function Insights() {
       title: "Highest Spending",
       desc: topCategory
         ? `${CATEGORIES[topCategory[0]]?.icon} ${topCategory[0]} accounts for ₹${topCategory[1].toLocaleString(
-            "en-IN"
+            "en-IN",
           )} of your expenses`
         : "No data",
     },
     {
       icon: expenseDiff > 0 ? TrendingUp : TrendingDown,
       color: expenseDiff > 0 ? "#ef4444" : "#22c55e",
-      bg: expenseDiff > 0
-        ? "rgba(239,68,68,0.1)"
-        : "rgba(34,197,94,0.1)",
+      bg: expenseDiff > 0 ? "rgba(239,68,68,0.1)" : "rgba(34,197,94,0.1)",
       title: "Monthly Comparison",
       desc: `Expenses ${
         expenseDiff > 0 ? "increased" : "decreased"
@@ -115,9 +130,7 @@ export default function Insights() {
   return (
     <div className="space-y-6">
       <div className="anim-fade-up">
-        <h1 className="font-display font-bold text-white text-2xl">
-          Insights
-        </h1>
+        <h1 className="font-display font-bold text-white text-2xl">Insights</h1>
         <p className="text-sm mt-1 text-[#4a4760]">
           Smart analysis of your financial patterns
         </p>
@@ -159,9 +172,7 @@ export default function Insights() {
           Monthly Income vs Expenses
         </h3>
 
-        <p className="text-xs mb-5 text-[#4a4760]">
-          Side-by-side comparison
-        </p>
+        <p className="text-xs mb-5 text-[#4a4760]">Side-by-side comparison</p>
 
         <ResponsiveContainer width="100%" height={220}>
           <BarChart data={monthlyData}>
@@ -211,9 +222,7 @@ export default function Insights() {
           Expense by Category
         </h3>
 
-        <p className="text-xs mb-5 text-[#4a4760]">
-          Total spend per category
-        </p>
+        <p className="text-xs mb-5 text-[#4a4760]">Total spend per category</p>
 
         <div className="space-y-3">
           {sortedCats.map(([name, value]) => {
