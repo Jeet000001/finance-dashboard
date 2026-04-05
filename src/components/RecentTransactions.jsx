@@ -1,6 +1,6 @@
 import { ArrowUpRight, ArrowDownLeft } from "lucide-react";
 import { useApp } from "../context/AppContext";
-import { CATEGORIES } from "../data/mockData";
+// import { CATEGORIES } from "../data/mockData";
 
 export default function RecentTransactions() {
   const { state, dispatch } = useApp();
