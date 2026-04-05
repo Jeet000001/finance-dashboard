@@ -4,7 +4,14 @@ import { CATEGORIES } from "../data/mockData";
 
 const RADIAN = Math.PI / 180;
 
-const renderCustomLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+const renderCustomLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+}) => {
   if (percent < 0.05) return null;
 
   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -41,11 +48,11 @@ const CustomTooltip = ({ active, payload }) => {
 
 export default function SpendingChart() {
   const { state } = useApp();
-  const expenses = state.transactions.filter(t => t.type === "expense");
+  const expenses = state.transactions.filter((t) => t.type === "expense");
 
   const categoryTotals = {};
 
-  expenses.forEach(t => {
+  expenses.forEach((t) => {
     categoryTotals[t.category] = (categoryTotals[t.category] || 0) + t.amount;
   });
 
@@ -53,7 +60,7 @@ export default function SpendingChart() {
     .map(([name, value]) => ({
       name,
       value,
-      color: CATEGORIES[name]?.color || "#888"
+      color: CATEGORIES[name]?.color || "#888",
     }))
     .sort((a, b) => b.value - a.value)
     .slice(0, 7);
@@ -65,13 +72,10 @@ export default function SpendingChart() {
           Spending Breakdown
         </h3>
 
-        <p className="text-xs mt-0.5 text-[#4a4760]">
-          By category
-        </p>
+        <p className="text-xs mt-0.5 text-[#4a4760]">By category</p>
       </div>
       <ResponsiveContainer width="100%" height={220}>
         <PieChart>
-
           <Pie
             data={data}
             cx="50%"
@@ -89,12 +93,11 @@ export default function SpendingChart() {
           </Pie>
 
           <Tooltip content={<CustomTooltip />} />
-
         </PieChart>
       </ResponsiveContainer>
 
       <div className="grid grid-cols-2 gap-1.5 mt-2">
-        {data.map(d => (
+        {data.map((d) => (
           <div key={d.name} className="flex items-center gap-2 text-xs">
             <span
               className="w-2 h-2 rounded-full flex-shrink-0"
@@ -106,7 +109,6 @@ export default function SpendingChart() {
           </div>
         ))}
       </div>
-
     </div>
   );
 }
