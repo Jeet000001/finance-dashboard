@@ -9,10 +9,15 @@ export default function SummaryCards() {
   const { state } = useApp();
   const txns = state.transactions;
 
-  const income = txns.filter(t => t.type === "income").reduce((s, t) => s + t.amount, 0);
-  const expenses = txns.filter(t => t.type === "expense").reduce((s, t) => s + t.amount, 0);
+  const income = txns
+    .filter((t) => t.type === "income")
+    .reduce((s, t) => s + t.amount, 0);
+  const expenses = txns
+    .filter((t) => t.type === "expense")
+    .reduce((s, t) => s + t.amount, 0);
   const balance = income - expenses;
-  const savingsRate = income > 0 ? ((income - expenses) / income * 100).toFixed(1) : 0;
+  const savingsRate =
+    income > 0 ? (((income - expenses) / income) * 100).toFixed(1) : 0;
 
   const cards = [
     {
@@ -26,7 +31,7 @@ export default function SummaryCards() {
     {
       label: "Total Income",
       value: fmt(income),
-      sub: `${txns.filter(t => t.type === "income").length} transactions`,
+      sub: `${txns.filter((t) => t.type === "income").length} transactions`,
       icon: TrendingUp,
       iconBg: "bg-green-500",
       textColor: "text-green-300",
@@ -34,7 +39,7 @@ export default function SummaryCards() {
     {
       label: "Total Expenses",
       value: fmt(expenses),
-      sub: `${txns.filter(t => t.type === "expense").length} transactions`,
+      sub: `${txns.filter((t) => t.type === "expense").length} transactions`,
       icon: TrendingDown,
       iconBg: "bg-red-500",
       textColor: "text-red-300",
@@ -43,7 +48,7 @@ export default function SummaryCards() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      {cards.map((card, i) => {
+      {cards.map((card) => {
         const Icon = card.icon;
 
         return (
@@ -53,7 +58,9 @@ export default function SummaryCards() {
           >
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-3">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${card.iconBg}`}>
+                <div
+                  className={`w-10 h-10 rounded-xl flex items-center justify-center ${card.iconBg}`}
+                >
                   <Icon size={18} className="text-white" />
                 </div>
 
@@ -67,10 +74,7 @@ export default function SummaryCards() {
                 {card.value}
               </p>
 
-              <p className="text-xs mt-1 text-gray-500">
-                {card.sub}
-              </p>
-
+              <p className="text-xs mt-1 text-gray-500">{card.sub}</p>
             </div>
           </div>
         );

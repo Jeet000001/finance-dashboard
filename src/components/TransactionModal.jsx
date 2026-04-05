@@ -125,7 +125,7 @@ export default function TransactionModal({ open, onClose, editData }) {
                     Icon: ArrowDownCircle,
                     activeClass: "border-red-500/40 bg-red-500/10 text-red-400",
                   },
-                ].map(({ value, label, Icon, activeClass }) => (
+                ].map(({ value, label, activeClass }) => (
                   <button
                     key={value}
                     onClick={() => setForm((f) => ({ ...f, type: value }))}
