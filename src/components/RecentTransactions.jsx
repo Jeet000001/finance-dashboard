@@ -33,7 +33,6 @@ export default function RecentTransactions() {
 
       <div className="space-y-2">
         {recent.map(t => {
-          const cat = CATEGORIES[t.category];
           const isIncome = t.type === "income";
 
           return (
