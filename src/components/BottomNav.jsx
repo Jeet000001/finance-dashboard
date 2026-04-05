@@ -13,7 +13,7 @@ export default function BottomNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 flex md:hidden bg-[#0d0c15] border-t border-[#2d2a45] pb-[env(safe-area-inset-bottom)]">
-      {tabs.map(({ id, label, icon: Icon }) => {
+      {tabs.map(({ id, label }) => {
         const active = activeTab === id;
 
         return (

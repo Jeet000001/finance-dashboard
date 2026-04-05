@@ -27,7 +27,7 @@ export default function Sidebar() {
         </div>
       </div>
       <nav className="flex-1 px-3 py-4 space-y-1">
-        {navItems.map(({ id, label, icon: Icon }) => {
+        {navItems.map(({ id, label}) => {
           const active = activeTab === id;
           return (
             <button
