@@ -42,9 +42,7 @@ export default function BalanceChart() {
           <h3 className="font-display font-semibold text-white">
             Balance Trend
           </h3>
-          <p className="text-xs mt-0.5 text-[#4a4760]">
-            6 months overview
-          </p>
+          <p className="text-xs mt-0.5 text-[#4a4760]">6 months overview</p>
         </div>
 
         <div className="flex gap-4 text-xs">
