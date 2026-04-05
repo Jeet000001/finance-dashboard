@@ -7,14 +7,18 @@ import { useApp } from "../context/AppContext";
 export default function Dashboard() {
   const { state } = useApp();
   const hour = new Date().getHours();
-  const greeting = hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
+  const greeting =
+    hour < 12 ? "Good morning" : hour < 17 ? "Good afternoon" : "Good evening";
 
   return (
     <div className="space-y-6">
       <div className="anim-fade-up">
-        <h1 className="font-display font-bold text-white text-2xl">{greeting} 👋</h1>
+        <h1 className="font-display font-bold text-white text-2xl">
+          {greeting} 👋
+        </h1>
         <p className="text-sm mt-1" style={{ color: "#4a4760" }}>
-          Here's your financial overview · {state.role === "admin" ? "Admin Access" : "Viewer Mode"}
+          Here's your financial overview ·{" "}
+          {state.role === "admin" ? "Admin Access" : "Viewer Mode"}
         </p>
       </div>
       <SummaryCards />
